@@ -1,56 +1,53 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Sejarah Cafe</title>
+    <title>D'edge Coffee Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="parallax-header">
-        <div class="header-content">
-            <h1>Sejarah Cafe</h1>
-            <p>Selamat datang di dashboard sejarah cafe kami!</p>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>D'edge Coffee</h2>
+            </div>
+            <ul>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Menu</a></li>
+                <li><a href="#">Orders</a></li>
+                <li><a href="#">Customers</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
         </div>
-    </header>
 
-    <nav>
-        <ul>
-            <li><a href="#">Beranda</a></li>
-            <li><a href="menu.html">Menu</a></li>
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="laporan.html">Laporan</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section class="history">
-            <h2>Timeline Sejarah</h2>
-            <div class="history-item">
-                <h3>2000 - Pendirian Cafe</h3>
-                <p>Cafe ini didirikan oleh sekelompok pecinta kopi yang ingin menciptakan tempat berkumpul yang nyaman.</p>
-                <img src="gambar/cafe2.jpg" alt="Pembukaan Cafe">
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h1>Welcome to D'edge Coffee Dashboard</h1>
+            </header>
+            <div class="content">
+                <section class="overview">
+                    <h2>Overview</h2>
+                    <p>Manage your coffee orders and customer data here.</p>
+                </section>
+                <section class="stats">
+                    <div class="stat-card">
+                        <h3>Total Orders</h3>
+                        <p>250</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Active Customers</h3>
+                        <p>180</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Pending Orders</h3>
+                        <p>15</p>
+                    </div>
+                </section>
             </div>
-            <div class="history-item">
-                <h3>2005 - Ekspansi Menu</h3>
-                <p>Menu kami diperluas dengan menambahkan berbagai jenis kopi dan makanan ringan.</p>
-                <img src="images/menu-expansion.jpg" alt="Ekspansi Menu">
-            </div>
-            <div class="history-item">
-                <h3>2010 - Acara Komunitas</h3>
-                <p>Kami mulai mengadakan acara komunitas seperti pembacaan puisi dan pertunjukan musik.</p>
-                <img src="images/community-event.jpg" alt="Acara Komunitas">
-            </div>
-            <div class="history-item">
-                <h3>2020 - Renovasi Cafe</h3>
-                <p>Cafe kami direnovasi untuk memberikan suasana yang lebih modern dan nyaman.</p>
-                <img src="images/cafe-renovation.jpg" alt="Renovasi Cafe">
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Cafe Kami. Semua hak dilindungi.</p>
-    </footer>
+        </div>
+    </div>
 </body>
 </html>
