@@ -100,3 +100,49 @@ h1 {
     font-size: 28px;
     font-weight: bold;
 }
+
+/* Mengatur background pada seluruh halaman */
+body {
+    background: url('coffe.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333; /* Warna teks default */
+}
+
+/* Gaya untuk sidebar */
+.sidebar {
+    background-color: rgba(0, 0, 0, 0.7); /* Background hitam transparan untuk sidebar */
+    color: #fff;
+    width: 250px;
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    margin: 5px 0;
+}
+
+.sidebar ul li a:hover {
+    background-color: #555;
+}
+
+/* Mengatur background main-content */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Background putih semi-transparan */
+    border-radius: 8px;
+}
+
