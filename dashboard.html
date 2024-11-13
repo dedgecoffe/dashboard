@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>D'edge Coffee Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styledashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -13,7 +15,6 @@
             <div class="logo">
                 <h2>D'edge Coffee</h2>
             </div>
-            
             <ul>
                 <li><a href="#">Dashboard</a></li>
                 <li><a href="#">Menu</a></li>
@@ -47,83 +48,52 @@
                         <p id="pending-orders">15</p>
                     </div>
                 </section>
+                <section class="chart">
+                    <canvas id="orderChart" width="400" height="200"></canvas>
+                </section>
             </div>
         </div>
     </div>
 
     <script>
-        // Simulating fetching new data from the server every 5 seconds
-        setInterval(() => {
-            // Example data to simulate new order updates
-            const newTotalOrders = Math.floor(Math.random() * 300);
-            const newActiveCustomers = Math.floor(Math.random() * 250);
-            const newPendingOrders = Math.floor(Math.random() * 20);
-
-            // Update the dashboard with new values
-            document.getElementById('total-orders').innerText = newTotalOrders;
-            document.getElementById('active-customers').innerText = newActiveCustomers;
-            document.getElementById('pending-orders').innerText = newPendingOrders;
-        }, 5000); // 5000ms = 5 seconds
-    </script>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Pemesanan</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-    <div style="width: 80%; margin: auto;">
-        <canvas id="orderChart"></canvas>
-    </div>
-
-    <script>
+        // Menginisialisasi grafik
         var ctx = document.getElementById('orderChart').getContext('2d');
         var orderChart = new Chart(ctx, {
-            type: 'line', // Jenis grafik: bisa 'bar' atau 'line'
+            type: 'line',
             data: {
-                labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'], // Label untuk X-axis
+                labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
                 datasets: [{
                     label: 'Jumlah Pemesanan',
-                    data: [0, 0, 0, 0, 0, 0, 0], // Data pemesanan awal
-                    borderColor: 'rgba(75, 192, 192, 1)', // Warna garis
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Warna latar belakang area
-                    tension: 0.1
+                    data: [30, 45, 60, 55, 75, 90, 100],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    tension: 0.4
                 }]
             },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true // Memulai sumbu Y dari angka 0
+                        beginAtZero: true
                     }
+                },
+                animation: {
+                    duration: 1000 // Durasi animasi
                 }
             }
         });
 
-        // Fungsi untuk mendapatkan data pemesanan dari server dan memperbarui grafik
-        function updateChartData() {
-            $.ajax({
-                url: 'get_orders.php', // Ganti dengan URL backend Anda
-                method: 'GET',
-                success: function(data) {
-                    var orders = JSON.parse(data); // Mengubah data JSON ke array
-                    orderChart.data.datasets[0].data = orders; // Update data grafik
-                    orderChart.update(); // Memperbarui grafik
-                }
-            });
-        }
+        // Simulasi data untuk dashboard dan grafik, diperbarui setiap 5 detik
+        setInterval(() => {
+            // Perbarui data dashboard
+            document.getElementById('total-orders').innerText = Math.floor(Math.random() * 300);
+            document.getElementById('active-customers').innerText = Math.floor(Math.random() * 250);
+            document.getElementById('pending-orders').innerText = Math.floor(Math.random() * 20);
 
-        // Memperbarui grafik setiap 5 detik (5000 ms)
-        setInterval(updateChartData, 5000);
-
-        // Memanggil update awal untuk mendapatkan data pertama kali
-        updateChartData();
+            // Perbarui data pada grafik
+            var newData = Array.from({ length: 7 }, () => Math.floor(Math.random() * 150));
+            orderChart.data.datasets[0].data = newData;
+            orderChart.update(); // Memperbarui grafik dengan animasi
+        }, 5000); // 5000 ms = 5 detik
     </script>
 </body>
 </html>
-
