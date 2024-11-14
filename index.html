@@ -1,104 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>D'edge Coffee Dashboard</title>
-    <link rel="stylesheet" href="styledashboard.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Login Dashboard</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Menghubungkan file CSS -->
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <h2>D'edge Coffee</h2>
-            </div>
-            <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Menu</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#" id="logoutBtn">Logout</a></li> <!-- Tombol Logout -->
-            </ul>
+
+<div class="login-container">
+    <h2>Login Dashboard</h2>
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
         </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <header>
-                <h1>Welcome D'edge Coffee Dashboard</h1>
-            </header>
-            <div class="content">
-                <section class="overview">
-                    <h2>Overview</h2>
-                    <p>Manage your coffee orders and customer data here.</p>
-                </section>
-                <section class="stats">
-                    <div class="stat-card">
-                        <h3>Total Orders</h3>
-                        <p id="total-orders">250</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Active Customers</h3>
-                        <p id="active-customers">180</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Pending Orders</h3>
-                        <p id="pending-orders">15</p>
-                    </div>
-                </section>
-                <section class="chart">
-                    <canvas id="orderChart" width="400" height="200"></canvas>
-                </section>
-            </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
         </div>
-    </div>
+        <button type="submit" class="btn">Login</button>
+        <div class="error-message" id="error-message"></div>
+    </form>
+</div>
 
-    <script>
-        // Menginisialisasi grafik
-        var ctx = document.getElementById('orderChart').getContext('2d');
-        var orderChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
-                datasets: [{
-                    label: 'Jumlah Pemesanan',
-                    data: [30, 45, 60, 55, 75, 90, 100],
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    tension: 0.4
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                animation: {
-                    duration: 1000 // Durasi animasi
-                }
-            }
-        });
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('error-message');
 
-        // Simulasi data untuk dashboard dan grafik, diperbarui setiap 5 detik
-        setInterval(() => {
-            // Perbarui data dashboard
-            document.getElementById('total-orders').innerText = Math.floor(Math.random() * 300);
-            document.getElementById('active-customers').innerText = Math.floor(Math.random() * 250);
-            document.getElementById('pending-orders').innerText = Math.floor(Math.random() * 20);
+        // Contoh validasi sederhana
+        if (username === 'Malik' && password === 'Malik1242') {
+            // Redirect ke halaman dashboard
+            window.location.href = "Dashboard.html"; // Ganti dengan URL dashboard Anda
+        } else {
+            errorMessage.textContent = 'Username atau password salah!';
+        }
+    });
+</script>
 
-            // Perbarui data pada grafik
-            var newData = Array.from({ length: 7 }, () => Math.floor(Math.random() * 150));
-            orderChart.data.datasets[0].data = newData;
-            orderChart.update(); // Memperbarui grafik dengan animasi
-        }, 5000); // 5000 ms = 5 detik
-
-        // Logout functionality
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            // Redirect ke halaman login
-            window.location.href = "Login.html"; // Ganti dengan URL halaman login Anda
-        });
-    </script>
 </body>
 </html>
