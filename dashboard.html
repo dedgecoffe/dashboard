@@ -19,7 +19,7 @@
                 <li><a href="#">Dashboard</a></li>
                 <li><a href="#">Menu</a></li>
                 <li><a href="#">Orders</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="#" id="logoutBtn">Logout</a></li> <!-- Tombol Logout -->
             </ul>
         </div>
 
@@ -93,6 +93,12 @@
             orderChart.data.datasets[0].data = newData;
             orderChart.update(); // Memperbarui grafik dengan animasi
         }, 5000); // 5000 ms = 5 detik
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // Redirect ke halaman login
+            window.location.href = 'login.html'; // Ganti dengan URL halaman login Anda
+        });
     </script>
 </body>
 </html>
