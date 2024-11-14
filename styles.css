@@ -37,7 +37,7 @@ body::before {
     top: 10%; /* Posisi acak */
     left: 30%; /* Posisi acak */
     font-size: 3rem; /* Ukuran font */
-    color: white;
+    color: rgb(131, 69, 41);
     font-weight: bold;
     letter-spacing: 3px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
@@ -51,7 +51,7 @@ body::after {
     top: 30%;
     left: 60%;
     font-size: 4rem; /* Ukuran font */
-    color: white;
+    color: rgb(240, 239, 237);
     font-weight: bold;
     letter-spacing: 3px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
