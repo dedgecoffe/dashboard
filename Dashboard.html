@@ -20,7 +20,7 @@
                 <li><a href="#">Dashboard</a></li>
                 <li><a href="#">Menu</a></li>
                 <li><a href="#">Orders</a></li>
-                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li> <!-- Tombol Logout dengan Ikon -->
+                <li><a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </div>
 
@@ -31,68 +31,90 @@
             </header>
             <div class="content">
                 <section class="overview">
-                    <p>"Kelola pesanan kopi dan data pelanggan Anda dengan mudah di sini. Pantau setiap transaksi, analisis preferensi pelanggan, dan optimalkan layanan Anda untuk memberikan pengalaman yang lebih baik. Dengan sistem manajemen yang efisien, Anda dapat meningkatkan produktivitas bisnis dan memastikan kepuasan pelanggan di setiap langkah.</p>
+                    <p>"Kelola pesanan kopi dan data pelanggan Anda dengan mudah di sini. Pantau setiap transaksi, analisis preferensi pelanggan, dan optimalkan layanan Anda untuk memberikan pengalaman yang lebih baik."</p>
                 </section>
+
+                <!-- Statistik Utama -->
                 <section class="stats">
-                    <div class="stat-card">
-                        <h3>Jumlah Pesanan</h3>
-                        <p id="total-orders">250</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Pelanggan Aktif</h3>
-                        <p id="active-customers">180</p>
-                    </div>
-                    <div class="stat-card">
-                        <h3>Pesanan Tertunda</h3>
-                        <p id="pending-orders">15</p>
-                    </div>
+                    <div class="stat-card"><h3>Jumlah Pesanan</h3><p id="total-orders">250</p></div>
+                    <div class="stat-card"><h3>Pelanggan Aktif</h3><p id="active-customers">180</p></div>
+                    <div class="stat-card"><h3>Pesanan Tertunda</h3><p id="pending-orders">15</p></div>
+                    <div class="stat-card"><h3>Total Pendapatan</h3><p id="total-revenue">Rp 5,000,000</p></div>
+                    <div class="stat-card"><h3>Data Pelanggan</h3><p id="customer-data">350 Pelanggan</p></div>
+                    <div class="stat-card"><h3>Data Bahan Baku</h3><p id="inventory-data">15 Item</p></div>
                 </section>
+
+                <!-- Grafik Pendapatan -->
                 <section class="chart">
-                    <canvas id="orderChart" width="400" height="200"></canvas>
+                    <canvas id="revenueChart" width="400" height="200"></canvas>
                 </section>
             </div>
         </div>
     </div>
 
+    <script src="dashboard.js"></script>
+</body>
+</html>
+
+
     <script>
-        // Menginisialisasi grafik
-        var ctx = document.getElementById('orderChart').getContext('2d');
-        var orderChart = new Chart(ctx, {
-            type: 'line',
+        // Menginisialisasi grafik pendapatan
+        var ctx = document.getElementById('revenueChart').getContext('2d');
+        var revenueChart = new Chart(ctx, {
+            type: 'bar',
             data: {
                 labels: ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'],
                 datasets: [{
-                    label: 'Jumlah Pemesanan',
-                    data: [30, 45, 60, 55, 75, 90, 100],
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    tension: 0.4
+                    label: 'Pendapatan (Rp)',
+                    data: [300000, 450000, 500000, 480000, 700000, 850000, 1000000],
+                    backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
                 }]
             },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Pendapatan (Rp)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Hari'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
                     }
                 },
                 animation: {
-                    duration: 1000 // Durasi animasi
+                    duration: 1000
                 }
             }
         });
 
         // Simulasi data untuk dashboard dan grafik, diperbarui setiap 5 detik
         setInterval(() => {
-            // Perbarui data dashboard
+            // Perbarui data di dashboard
             document.getElementById('total-orders').innerText = Math.floor(Math.random() * 300);
             document.getElementById('active-customers').innerText = Math.floor(Math.random() * 250);
             document.getElementById('pending-orders').innerText = Math.floor(Math.random() * 20);
+            document.getElementById('total-revenue').innerText = 'Rp ' + (Math.floor(Math.random() * 5000000) + 1000000);
+            document.getElementById('customer-data').innerText = Math.floor(Math.random() * 500) + ' Pelanggan';
+            document.getElementById('inventory-data').innerText = Math.floor(Math.random() * 20) + ' Item';
 
-            // Perbarui data pada grafik
-            var newData = Array.from({ length: 7 }, () => Math.floor(Math.random() * 150));
-            orderChart.data.datasets[0].data = newData;
-            orderChart.update(); // Memperbarui grafik dengan animasi
-        }, 5000); // 5000 ms = 5 detik
+            // Perbarui data pada grafik pendapatan
+            var newRevenueData = Array.from({ length: 7 }, () => Math.floor(Math.random() * 1000000));
+            revenueChart.data.datasets[0].data = newRevenueData;
+            revenueChart.update();
+        }, 5000);
 
         // Logout functionality
         document.getElementById('logoutBtn').addEventListener('click', function() {
