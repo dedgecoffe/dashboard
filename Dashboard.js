@@ -41,5 +41,5 @@ setInterval(() => {
 
 // Logout functionality
 document.getElementById('logoutBtn').addEventListener('click', function() {
-    window.location.href = "https://dedgecoffe.github.io/dashboard/";
+    window.location.href = "https://github.com/dedgecoffe/login";
 });
