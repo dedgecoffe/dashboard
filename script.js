@@ -40,6 +40,6 @@ setInterval(() => {
 }, 5000);
 
 // Logout functionality
-document.getElementById('logoutBtn').addEventListener('click', function() {
+document.getElementById('logoutBtn').addEventListener('click', function(event) {
     window.location.href = 'https://dedgecoffe.github.io/login/';
 });
